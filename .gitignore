@@ -1,0 +1,50 @@
+# Ignore build outputs
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# Visual Studio specific
+.vs/
+.vscode/
+
+# Rider specific
+.idea/
+
+# Dependency directories
+packages/
+node_modules/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Resharper
+_ReSharper.Caches/
+
+# NuGet
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+
+# DotNet specific
+*.swp
+*.lock.json
+*.ide.*
+artifacts/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.old
+
+# Publish outputs
+wwwroot/
