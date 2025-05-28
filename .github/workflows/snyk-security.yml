@@ -29,22 +29,29 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      # Separate monitor steps for each .csproj for better logging
+      - name: Restore .NET dependencies
+        run: dotnet restore
       - name: Snyk monitor - BoardService
         run: snyk monitor --file=BoardService/BoardService.csproj
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
+      - name: Restore .NET dependencies
+        run: dotnet restore
       - name: Snyk monitor - CardService
         run: snyk monitor --file=CardService/CardService.csproj
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
+      - name: Restore .NET dependencies
+        run: dotnet restore
       - name: Snyk monitor - Gateway
         run: snyk monitor --file=Gateway/Gateway.csproj
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
+      - name: Restore .NET dependencies
+        run: dotnet restore
       - name: Snyk monitor - Shared.Messaging
         run: snyk monitor --file=Shared.Messaging/Shared.Messaging.csproj
         env:
