@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boards
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: boards
+  template:
+    metadata:
+      labels:
+        app: boards
+    spec:
+      containers:
+        - name: boards
+          image: trillo-boards
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: ConnectionStrings__Default
+              value: "Host=postgres;Port=5432;Database=trello_clone;Username=trello_clone;Password=supersecret"
+            - name: RabbitMQ__Host
+              value: "rabbitmq"
+          resources:
+            requests:
+              cpu: "100m"
+            limits:
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: boards
+spec:
+  selector:
+    app: boards
+  ports:
+    - port: 80
+      targetPort: 80

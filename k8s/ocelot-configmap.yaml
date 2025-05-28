@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ocelot-config
+data:
+  ocelot.json: |
+    {
+      "Routes": [
+        {
+          "DownstreamPathTemplate": "/api/boards",
+          "DownstreamScheme": "http",
+          "DownstreamHostAndPorts": [
+            { "Host": "boards", "Port": 80 }
+          ],
+          "UpstreamPathTemplate": "/boards",
+          "UpstreamHttpMethod": [ "GET", "POST" ]
+        },
+        {
+          "DownstreamPathTemplate": "/api/boards/{everything}",
+          "DownstreamScheme": "http",
+          "DownstreamHostAndPorts": [
+            { "Host": "boards", "Port": 80 }
+          ],
+          "UpstreamPathTemplate": "/boards/{everything}",
+          "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+        },
+        {
+          "DownstreamPathTemplate": "/api/cards",
+          "DownstreamScheme": "http",
+          "DownstreamHostAndPorts": [
+            { "Host": "cards", "Port": 80 }
+          ],
+          "UpstreamPathTemplate": "/cards",
+          "UpstreamHttpMethod": [ "GET", "POST" ]
+        },
+        {
+          "DownstreamPathTemplate": "/api/cards/{everything}",
+          "DownstreamScheme": "http",
+          "DownstreamHostAndPorts": [
+            { "Host": "cards", "Port": 80 }
+          ],
+          "UpstreamPathTemplate": "/cards/{everything}",
+          "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+        }
+      ],
+      "GlobalConfiguration": {
+        "BaseUrl": "http://localhost:5013"
+      }
+    }

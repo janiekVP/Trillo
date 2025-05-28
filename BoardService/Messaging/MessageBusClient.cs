@@ -1,4 +1,4 @@
-﻿/*using System.Text;
+﻿using System.Text;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore.Metadata;
 using RabbitMQ.Client;
@@ -9,11 +9,11 @@ namespace BoardService.Messaging
     public class MessageBusClient
     {
         private readonly IConnection _connection;
-        private readonly IModel _channel;
+        private readonly RabbitMQ.Client.IModel _channel;
 
         public MessageBusClient()
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+            var factory = new ConnectionFactory() { HostName = "rabbitmq" };
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
 
@@ -33,4 +33,3 @@ namespace BoardService.Messaging
         }
     }
 }
-*/

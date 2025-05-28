@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cards
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cards
+  template:
+    metadata:
+      labels:
+        app: cards
+    spec:
+      containers:
+        - name: cards
+          image: trillo-cards
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: ConnectionStrings__Default
+              value: "Host=postgres;Port=5432;Database=trello_clone;Username=trello_clone;Password=supersecret"
+            - name: RabbitMQ__Host
+              value: "rabbitmq"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cards
+spec:
+  selector:
+    app: cards
+  ports:
+    - port: 80
+      targetPort: 80

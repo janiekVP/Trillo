@@ -1,33 +1,34 @@
-version: '3.9'
-
 services:
   boards:
     build:
-      context: ./BoardService
+      context: .                             
+      dockerfile: BoardService/Dockerfile
     ports:
       - "5041:80"
     depends_on:
       - postgres
       - rabbitmq
     environment:
-      - ConnectionStrings__Default=Host=postgres;Port=5432;Database=boardsdb;Username=trello_clone;Password=supersecret
+      - ConnectionStrings__Default=Host=postgres;Port=5432;Database=trello_clone_db;Username=trello_clone;Password=supersecret
       - RabbitMQ__Host=rabbitmq
 
   cards:
     build:
-      context: ./CardService
+      context: .
+      dockerfile: CardService/Dockerfile
     ports:
       - "5034:80"
     depends_on:
       - postgres
       - rabbitmq
     environment:
-      - ConnectionStrings__Default=Host=postgres;Port=5432;Database=cardsdb;Username=trello_clone;Password=supersecret
+      - ConnectionStrings__Default=Host=postgres;Port=5432;Database=trello_clone_db;Username=trello_clone;Password=supersecret
       - RabbitMQ__Host=rabbitmq
 
   gateway:
     build:
-      context: ./Gateway
+      context: .
+      dockerfile: Gateway/Dockerfile
     ports:
       - "5013:80"
     depends_on:
@@ -41,6 +42,7 @@ services:
     environment:
       POSTGRES_USER: trello_clone
       POSTGRES_PASSWORD: supersecret
+      POSTGRES_DB: trello_clone_db
     ports:
       - "5432:5432"
     volumes:
@@ -50,7 +52,7 @@ services:
     image: rabbitmq:3-management
     ports:
       - "5672:5672"
-      - "15672:15672" # RabbitMQ UI
+      - "15672:15672" 
 
 volumes:
   pgdata:

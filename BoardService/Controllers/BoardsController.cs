@@ -1,6 +1,6 @@
 ﻿using BoardService.Data;
 using BoardService.Dtos;
-/*using BoardService.Messaging;*/
+using BoardService.Messaging;
 using BoardService.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -98,8 +98,8 @@ namespace BoardService.Controllers
             _context.Boards.Remove(board);
             await _context.SaveChangesAsync();
 
-            /*var bus = new MessageBusClient();
-            bus.PublishBoardDeleted(id);*/
+            var bus = new MessageBusClient();
+            bus.PublishBoardDeleted(id);
 
             return NoContent();
         }
