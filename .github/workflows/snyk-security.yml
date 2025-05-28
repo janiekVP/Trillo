@@ -58,7 +58,7 @@ jobs:
 
         # Runs Snyk Open Source (SCA) analysis and uploads result to Snyk.
       - name: Snyk monitor for .NET solution
-        run: snyk monitor --file=Trillo.sln --project-name=Trillo
+        run: snyk monitor --file=Trillo.sln
 
         # Runs Snyk Infrastructure as Code (IaC) analysis and uploads result to Snyk.
         # Use || true to not fail the pipeline.
