@@ -23,9 +23,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{02EA681E-C7D
 		boards-deployment.yaml = boards-deployment.yaml
 		cards-deployment.yaml = cards-deployment.yaml
 		gateway-deployment.yaml = gateway-deployment.yaml
+		grafana.yaml = grafana.yaml
 		ocelot-configmap.yaml = ocelot-configmap.yaml
 		postgres-deployment.yaml = postgres-deployment.yaml
 		rabbitmq-deployment.yaml = rabbitmq-deployment.yaml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardServiceTest", "BoardServiceTest\BoardServiceTest.csproj", "{FADD4DD6-4678-480D-9C12-2A3D8C294AC6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{029390C3-17FD-48BE-802E-4C43DAA3CFD9} = {029390C3-17FD-48BE-802E-4C43DAA3CFD9}
 	EndProjectSection
 EndProject
 Global
@@ -50,6 +56,10 @@ Global
 		{F02E7581-FD62-4B9F-A547-EE4681506DFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F02E7581-FD62-4B9F-A547-EE4681506DFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F02E7581-FD62-4B9F-A547-EE4681506DFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FADD4DD6-4678-480D-9C12-2A3D8C294AC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FADD4DD6-4678-480D-9C12-2A3D8C294AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FADD4DD6-4678-480D-9C12-2A3D8C294AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FADD4DD6-4678-480D-9C12-2A3D8C294AC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

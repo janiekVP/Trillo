@@ -17,7 +17,7 @@ spec:
           image: trillo-boards
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 80
+            - containerPort: 80   
           env:
             - name: ConnectionStrings__Default
               value: "Host=postgres;Port=5432;Database=trello_clone;Username=trello_clone;Password=supersecret"
@@ -37,5 +37,6 @@ spec:
   selector:
     app: boards
   ports:
-    - port: 80
+    - name: http
+      port: 80
       targetPort: 80

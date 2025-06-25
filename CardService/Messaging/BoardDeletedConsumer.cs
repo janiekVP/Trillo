@@ -34,6 +34,7 @@ namespace CardService.Messaging
             {
                 var factory = new ConnectionFactory()
                 {
+
                     HostName = Environment.GetEnvironmentVariable("RabbitMQ__Host") ?? "rabbitmq"
                 };
 
