@@ -33,11 +33,14 @@ namespace BoardService.Controllers
 
         private readonly IMongoClient _mongoClient;
 
-        public BoardsController(AppDbContext context, IMongoClient mongoClient, IHttpClientFactory httpClientFactory)
+        private readonly IConfiguration _configuration;
+
+        public BoardsController(AppDbContext context, IMongoClient mongoClient, IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             _context = context;
             _mongoClient = mongoClient;
             _httpClient = httpClientFactory.CreateClient();
+            _configuration = configuration;
         }
 
         // GET: api/boards/counter
@@ -46,7 +49,7 @@ namespace BoardService.Controllers
         {
             try
             {
-                var functionUrl = "https://learningoutcome.azurewebsites.net/api/HttpTriggerCount?code=qcWZa27YJ4vaDBcWQXjG0f1gCCo-BGD7bgLR-If7PZ-4AzFutyvDGw==";
+                var functionUrl = _configuration["AzureFunctions:CounterUrl"];
 
                 var response = await _httpClient.GetAsync(functionUrl);
 
